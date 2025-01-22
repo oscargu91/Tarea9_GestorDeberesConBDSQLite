@@ -116,9 +116,23 @@ public class MainActivity extends AppCompatActivity {
                 contentValues.put("estadoTarea", homework.isCompleted());
                 contentValues.put("fechaEntrega", homework.getDueDate());
                 bdEscribir.insert("tablaDeberes", null, contentValues);
+                String consulta = "SELECT id from tablaDeberes";
+                Cursor cursor = bdLectura.rawQuery(consulta, null);
+
+                // Obtener el ID del último registro insertado
+                Cursor cursor2 = bdLectura.rawQuery("SELECT last_insert_rowid()", null);
+                if (cursor != null && cursor.moveToFirst()) {
+                    int id = cursor.getInt(0); // Obtiene el ID del último registro
+                    homework.setId(id); // Asigna la ID al objeto homework
+                }
+                if (cursor != null) {
+                    cursor.close();
+                }
+
             } else {
                 // Si es una tarea editada, se actualiza en la lista y en la base de datos
                 int idEditar = homeworkToEdit.getId();
+
                 homeworkList.set(homeworkList.indexOf(homeworkToEdit), homework); // Reemplaza la tarea editada
 
                 String[] argumentos = new String[]{String.valueOf(idEditar)};

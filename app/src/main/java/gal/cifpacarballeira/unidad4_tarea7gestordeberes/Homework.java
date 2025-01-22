@@ -9,16 +9,10 @@ public class Homework implements Parcelable {
     private String description; // Descripción del deber
     private String dueDate; // Fecha de entrega en formato dd/MM/yyyy
     private boolean isCompleted; // Estado del deber
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     private int id;
+
+
+
     // Constructor
     public Homework(String subject, String description, String dueDate, boolean isCompleted) {
         this.subject = subject;
@@ -27,6 +21,7 @@ public class Homework implements Parcelable {
         this.isCompleted = isCompleted;
 
     }
+    //Constructor con id
     public Homework(String subject, String description, String dueDate, boolean isCompleted,int id) {
         this.subject = subject;
         this.description = description;
@@ -59,6 +54,14 @@ public class Homework implements Parcelable {
 
     public void setDueDate(String dueDate) {
         this.dueDate = dueDate;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int isCompleted() {
